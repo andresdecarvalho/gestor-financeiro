@@ -35,6 +35,7 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import java.awt.Cursor;
 
 public class Principal extends JDialog {
 	private JTextField txtPesquisar;
@@ -108,8 +109,8 @@ public class Principal extends JDialog {
 		setBounds(100, 100, 1001, 648);
 		getContentPane().setLayout(null);
 		this.setLocationRelativeTo(null);
-		
-		addWindowListener(new WindowAdapter() {//ação para modificar a label e mostrr data e hora
+
+		addWindowListener(new WindowAdapter() {// ação para modificar a label e mostrr data e hora
 			public void windowActivated(WindowEvent e) {
 				alterarLabel();
 			}
@@ -145,9 +146,9 @@ public class Principal extends JDialog {
 				editar();
 			}
 		});
-		btnEditar.setToolTipText("EDITAR PRODUTO");
+		btnEditar.setToolTipText("EDITAR M\u00CAS");
 		btnEditar.setIcon(null);
-		btnEditar.setBounds(358, 517, 119, 32);
+		btnEditar.setBounds(272, 517, 119, 32);
 		btnEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 		getContentPane().add(btnEditar);
 
@@ -181,11 +182,11 @@ public class Principal extends JDialog {
 		btnCalcular.setIcon(null);
 		btnCalcular.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				calcular();
 			}
 		});
-		btnCalcular.setToolTipText("CALCULAR");
-		btnCalcular.setBounds(651, 517, 119, 32);
+		btnCalcular.setToolTipText("CALCULAR D\u00C9BITOS");
+		btnCalcular.setBounds(565, 517, 119, 32);
 		btnCalcular.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 		getContentPane().add(btnCalcular);
 
@@ -197,8 +198,8 @@ public class Principal extends JDialog {
 				adicionar();
 			}
 		});
-		btnAdicionar.setToolTipText("ADICIONAR PRODUTO");
-		btnAdicionar.setBounds(212, 517, 119, 32);
+		btnAdicionar.setToolTipText("ADICIONAR M\u00CAS");
+		btnAdicionar.setBounds(126, 517, 119, 32);
 		btnAdicionar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 		getContentPane().add(btnAdicionar);
 
@@ -210,8 +211,8 @@ public class Principal extends JDialog {
 			}
 		});
 		btnDeletar.setIcon(null);
-		btnDeletar.setToolTipText("REMOVER PRODUTO");
-		btnDeletar.setBounds(505, 517, 119, 32);
+		btnDeletar.setToolTipText("REMOVER M\u00CAS");
+		btnDeletar.setBounds(419, 517, 119, 32);
 		btnDeletar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 		getContentPane().add(btnDeletar);
 
@@ -270,55 +271,64 @@ public class Principal extends JDialog {
 		getContentPane().add(txtV1);
 
 		cmb1 = new JComboBox();
-		cmb1.setModel(new DefaultComboBoxModel(new String[] { "PAGO", "N\u00C3O PAGO" }));
+		cmb1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		cmb1.setModel(new DefaultComboBoxModel(new String[] {"", "PAGO", "N\u00C3O PAGO"}));
 		cmb1.setFont(new Font("Arial", Font.BOLD, 12));
 		cmb1.setBounds(368, 284, 109, 20);
 		getContentPane().add(cmb1);
 
 		cmb2 = new JComboBox();
-		cmb2.setModel(new DefaultComboBoxModel(new String[] { "PAGO", "N\u00C3O PAGO" }));
+		cmb2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		cmb2.setModel(new DefaultComboBoxModel(new String[] {"", "PAGO", "N\u00C3O PAGO"}));
 		cmb2.setFont(new Font("Arial", Font.BOLD, 12));
 		cmb2.setBounds(368, 307, 109, 20);
 		getContentPane().add(cmb2);
 
 		cmb3 = new JComboBox();
-		cmb3.setModel(new DefaultComboBoxModel(new String[] { "PAGO", "N\u00C3O PAGO" }));
+		cmb3.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		cmb3.setModel(new DefaultComboBoxModel(new String[] {"", "PAGO", "N\u00C3O PAGO"}));
 		cmb3.setFont(new Font("Arial", Font.BOLD, 12));
 		cmb3.setBounds(368, 330, 109, 20);
 		getContentPane().add(cmb3);
 
 		cmb4 = new JComboBox();
-		cmb4.setModel(new DefaultComboBoxModel(new String[] { "PAGO", "N\u00C3O PAGO" }));
+		cmb4.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		cmb4.setModel(new DefaultComboBoxModel(new String[] {"", "PAGO", "N\u00C3O PAGO"}));
 		cmb4.setFont(new Font("Arial", Font.BOLD, 12));
 		cmb4.setBounds(368, 353, 109, 20);
 		getContentPane().add(cmb4);
 
 		cmb5 = new JComboBox();
-		cmb5.setModel(new DefaultComboBoxModel(new String[] { "PAGO", "N\u00C3O PAGO" }));
+		cmb5.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		cmb5.setModel(new DefaultComboBoxModel(new String[] {"", "PAGO", "N\u00C3O PAGO"}));
 		cmb5.setFont(new Font("Arial", Font.BOLD, 12));
 		cmb5.setBounds(368, 376, 109, 20);
 		getContentPane().add(cmb5);
 
 		cmb6 = new JComboBox();
-		cmb6.setModel(new DefaultComboBoxModel(new String[] { "PAGO", "N\u00C3O PAGO" }));
+		cmb6.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		cmb6.setModel(new DefaultComboBoxModel(new String[] {"", "PAGO", "N\u00C3O PAGO"}));
 		cmb6.setFont(new Font("Arial", Font.BOLD, 12));
 		cmb6.setBounds(368, 399, 109, 20);
 		getContentPane().add(cmb6);
 
 		cmb7 = new JComboBox();
-		cmb7.setModel(new DefaultComboBoxModel(new String[] { "PAGO", "N\u00C3O PAGO" }));
+		cmb7.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		cmb7.setModel(new DefaultComboBoxModel(new String[] {"", "PAGO", "N\u00C3O PAGO"}));
 		cmb7.setFont(new Font("Arial", Font.BOLD, 12));
 		cmb7.setBounds(368, 422, 109, 20);
 		getContentPane().add(cmb7);
 
 		cmb8 = new JComboBox();
-		cmb8.setModel(new DefaultComboBoxModel(new String[] { "PAGO", "N\u00C3O PAGO" }));
+		cmb8.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		cmb8.setModel(new DefaultComboBoxModel(new String[] {"", "PAGO", "N\u00C3O PAGO"}));
 		cmb8.setFont(new Font("Arial", Font.BOLD, 12));
 		cmb8.setBounds(368, 445, 109, 20);
 		getContentPane().add(cmb8);
 
 		cmb9 = new JComboBox();
-		cmb9.setModel(new DefaultComboBoxModel(new String[] { "PAGO", "N\u00C3O PAGO" }));
+		cmb9.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		cmb9.setModel(new DefaultComboBoxModel(new String[] {"", "PAGO", "N\u00C3O PAGO"}));
 		cmb9.setFont(new Font("Arial", Font.BOLD, 12));
 		cmb9.setBounds(368, 468, 109, 20);
 		getContentPane().add(cmb9);
@@ -395,49 +405,61 @@ public class Principal extends JDialog {
 		txtNull.setBounds(368, 261, 109, 20);
 		getContentPane().add(txtNull);
 		txtNull.setColumns(10);
-		
+
 		JLabel lblGanhos = new JLabel("GANHOS");
 		lblGanhos.setHorizontalAlignment(SwingConstants.LEFT);
 		lblGanhos.setFont(new Font("Arial", Font.BOLD, 12));
 		lblGanhos.setBounds(505, 240, 109, 17);
 		getContentPane().add(lblGanhos);
-		
+
 		JLabel lblDbitos = new JLabel("D\u00C9BITOS");
 		lblDbitos.setHorizontalAlignment(SwingConstants.LEFT);
 		lblDbitos.setFont(new Font("Arial", Font.BOLD, 12));
 		lblDbitos.setBounds(624, 241, 109, 17);
 		getContentPane().add(lblDbitos);
-		
+
 		JLabel lblSobra = new JLabel("SOBRA");
 		lblSobra.setHorizontalAlignment(SwingConstants.LEFT);
 		lblSobra.setFont(new Font("Arial", Font.BOLD, 12));
 		lblSobra.setBounds(743, 241, 109, 17);
 		getContentPane().add(lblSobra);
-		
+
 		txtGanhos = new JTextField();
 		txtGanhos.setFont(new Font("Arial", Font.BOLD, 12));
 		txtGanhos.setColumns(10);
 		txtGanhos.setBounds(505, 260, 109, 20);
 		getContentPane().add(txtGanhos);
-		
+
 		txtDebitos = new JTextField();
-		
+
 		txtDebitos.setFont(new Font("Arial", Font.BOLD, 12));
 		txtDebitos.setColumns(10);
 		txtDebitos.setBounds(624, 261, 109, 20);
 		getContentPane().add(txtDebitos);
-		
+
 		txtSobra = new JTextField();
 		txtSobra.setFont(new Font("Arial", Font.BOLD, 12));
 		txtSobra.setColumns(10);
 		txtSobra.setBounds(743, 261, 109, 20);
 		getContentPane().add(txtSobra);
-		
+
 		lblData = new JLabel("DATA");
 		lblData.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblData.setFont(new Font("Arial", Font.BOLD, 12));
 		lblData.setBounds(684, 33, 276, 14);
 		getContentPane().add(lblData);
+		
+		JButton btnLimpar = new JButton("LIMPAR");
+		btnLimpar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnLimpar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				limpar2();
+			}
+		});
+		btnLimpar.setToolTipText("LIMPAR CAMPOS");
+		btnLimpar.setFont(new Font("Arial", Font.BOLD, 11));
+		btnLimpar.setBounds(711, 517, 119, 32);
+		getContentPane().add(btnLimpar);
 
 		conexao = ModuloConexao.conector();// conectar com o banco (conexão fechada em login)
 
@@ -494,18 +516,18 @@ public class Principal extends JDialog {
 		cmb8.setSelectedItem(tblPrincipal.getModel().getValueAt(setar, 16).toString().replace(".", ","));
 		txtV10.setText(tblPrincipal.getModel().getValueAt(setar, 17).toString().replace(".", ","));
 		cmb9.setSelectedItem(tblPrincipal.getModel().getValueAt(setar, 18).toString().replace(".", ","));
-		
-		double valor1,valor2,valor3,valor4,valor5,valor6,valor7,valor8,valor9,resultado;
-		DecimalFormat formatador= new DecimalFormat("0.00");
-		valor1 = Double.parseDouble(txtV2.getText().replace(",","."));
-		valor2 = Double.parseDouble(txtV3.getText().replace(",","."));
-		valor3 = Double.parseDouble(txtV4.getText().replace(",","."));
-		valor4 = Double.parseDouble(txtV5.getText().replace(",","."));
-		valor5 = Double.parseDouble(txtV6.getText().replace(",","."));
-		valor6 = Double.parseDouble(txtV7.getText().replace(",","."));
-		valor7 = Double.parseDouble(txtV8.getText().replace(",","."));
-		valor8 = Double.parseDouble(txtV9.getText().replace(",","."));
-		valor9 = Double.parseDouble(txtV10.getText().replace(",","."));
+
+		double valor1, valor2, valor3, valor4, valor5, valor6, valor7, valor8, valor9, resultado;
+		DecimalFormat formatador = new DecimalFormat("0.00");
+		valor1 = Double.parseDouble(txtV2.getText().replace(",", "."));
+		valor2 = Double.parseDouble(txtV3.getText().replace(",", "."));
+		valor3 = Double.parseDouble(txtV4.getText().replace(",", "."));
+		valor4 = Double.parseDouble(txtV5.getText().replace(",", "."));
+		valor5 = Double.parseDouble(txtV6.getText().replace(",", "."));
+		valor6 = Double.parseDouble(txtV7.getText().replace(",", "."));
+		valor7 = Double.parseDouble(txtV8.getText().replace(",", "."));
+		valor8 = Double.parseDouble(txtV9.getText().replace(",", "."));
+		valor9 = Double.parseDouble(txtV10.getText().replace(",", "."));
 		resultado = valor1 + valor2 + valor3 + valor4 + valor5 + valor6 + valor7 + valor8 + valor9;
 		txtDebitos.setText(formatador.format(resultado));
 	}
@@ -563,7 +585,6 @@ public class Principal extends JDialog {
 							+ " foi atualizado com sucesso" + "\n O Valor de : " + txtV10.getText().replace(".", ",")
 							+ " R$ reais de " + lblCelular.getText() + " na situação de " + cmb9.getSelectedItem()
 							+ " foi atualizado com sucesso");
-
 					limpar();
 				} else {
 					JOptionPane.showMessageDialog(null, "Não foi possível atualizar o mês de :" + txtV1.getText()
@@ -659,16 +680,45 @@ public class Principal extends JDialog {
 		}
 
 	}
-	
-	private void alterarLabel() {// metodo pra mostrar data e hora no lugar do Frame
-		//Date data = new Date();
-		//DateFormat formatador =
-        //DateFormat.getDateInstance(DateFormat.FULL);		
-		//lblData.setText(formatador.format(data));
-		
-		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-        LocalDateTime data = LocalDateTime.now();
 
-        lblData.setText(data.format(formatador));
+	private void calcular() {
+		double valor1, valor2, resultado;
+		DecimalFormat formatador = new DecimalFormat("0.00");
+		valor1 = Double.parseDouble(txtGanhos.getText().replace(",", "."));
+		valor2 = Double.parseDouble(txtDebitos.getText().replace(",", "."));
+		resultado = valor1 - valor2;
+		txtSobra.setText(formatador.format(resultado));
+		limpar();
 	}
+
+	private void alterarLabel() {// metodo pra mostrar data e hora no lugar do Frame
+		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+		LocalDateTime data = LocalDateTime.now();
+		lblData.setText(data.format(formatador));
+	}
+	
+	private void limpar2() {
+		txtV1.setText(null);
+		txtV2.setText(null);
+		cmb1.setSelectedItem(null);
+		txtV3.setText(null);
+		cmb2.setSelectedItem(null);
+		txtV4.setText(null);
+		cmb3.setSelectedItem(null);
+		txtV5.setText(null);
+		cmb4.setSelectedItem(null);
+		txtV6.setText(null);
+		cmb5.setSelectedItem(null);
+		txtV7.setText(null);
+		cmb6.setSelectedItem(null);
+		txtV8.setText(null);
+		cmb7.setSelectedItem(null);
+		txtV9.setText(null);
+		cmb8.setSelectedItem(null);
+		txtV10.setText(null);
+		cmb9.setSelectedItem(null);
+		txtGanhos.setText(null);
+		txtDebitos.setText(null);
+		txtSobra.setText(null);
+}
 }
