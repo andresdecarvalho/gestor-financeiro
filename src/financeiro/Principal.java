@@ -387,38 +387,38 @@ public class Principal extends JDialog {
 		JLabel lblGanhos = new JLabel("GANHOS");
 		lblGanhos.setHorizontalAlignment(SwingConstants.LEFT);
 		lblGanhos.setFont(new Font("Arial", Font.BOLD, 12));
-		lblGanhos.setBounds(473, 280, 109, 17);
+		lblGanhos.setBounds(454, 279, 109, 17);
 		getContentPane().add(lblGanhos);
 		
 		JLabel lblDbitos = new JLabel("D\u00C9BITOS");
 		lblDbitos.setHorizontalAlignment(SwingConstants.LEFT);
 		lblDbitos.setFont(new Font("Arial", Font.BOLD, 12));
-		lblDbitos.setBounds(612, 280, 109, 17);
+		lblDbitos.setBounds(599, 279, 109, 17);
 		getContentPane().add(lblDbitos);
 		
 		JLabel lblSobra = new JLabel("SOBRA");
 		lblSobra.setHorizontalAlignment(SwingConstants.LEFT);
 		lblSobra.setFont(new Font("Arial", Font.BOLD, 12));
-		lblSobra.setBounds(758, 280, 109, 17);
+		lblSobra.setBounds(747, 279, 109, 17);
 		getContentPane().add(lblSobra);
 		
 		txtGanhos = new JTextField();
 		txtGanhos.setFont(new Font("Arial", Font.BOLD, 12));
 		txtGanhos.setColumns(10);
-		txtGanhos.setBounds(473, 299, 109, 20);
+		txtGanhos.setBounds(454, 299, 109, 20);
 		getContentPane().add(txtGanhos);
 		
 		txtDebitos = new JTextField();
 		
 		txtDebitos.setFont(new Font("Arial", Font.BOLD, 12));
 		txtDebitos.setColumns(10);
-		txtDebitos.setBounds(612, 299, 109, 20);
+		txtDebitos.setBounds(599, 299, 109, 20);
 		getContentPane().add(txtDebitos);
 		
 		txtSobra = new JTextField();
 		txtSobra.setFont(new Font("Arial", Font.BOLD, 12));
 		txtSobra.setColumns(10);
-		txtSobra.setBounds(758, 299, 109, 20);
+		txtSobra.setBounds(747, 299, 109, 20);
 		getContentPane().add(txtSobra);
 
 		conexao = ModuloConexao.conector();// conectar com o banco (conexão fechada em login)
