@@ -22,12 +22,17 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.text.DecimalFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.JScrollPane;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 import javax.swing.SwingConstants;
 import java.awt.Font;
 
@@ -71,6 +76,7 @@ public class Principal extends JDialog {
 	private JTextField txtGanhos;
 	private JTextField txtDebitos;
 	private JTextField txtSobra;
+	private JLabel lblData;
 
 	/**
 	 * Launch the application.
@@ -99,9 +105,15 @@ public class Principal extends JDialog {
 		// Toolkit.getDefaultToolkit().getImage(Principal.class.getResource("/br/com/gde/icones/Principal.png")));
 		setModal(true);
 		setResizable(false);
-		setBounds(100, 100, 1001, 695);
+		setBounds(100, 100, 1001, 648);
 		getContentPane().setLayout(null);
 		this.setLocationRelativeTo(null);
+		
+		addWindowListener(new WindowAdapter() {//ação para modificar a label e mostrr data e hora
+			public void windowActivated(WindowEvent e) {
+				alterarLabel();
+			}
+		});
 
 		txtPesquisar = new JTextField();
 		txtPesquisar.setFont(new Font("Arial", Font.BOLD, 12));
@@ -123,7 +135,7 @@ public class Principal extends JDialog {
 		JLabel lblValor = new JLabel("VALOR");
 		lblValor.setFont(new Font("Arial", Font.BOLD, 12));
 		lblValor.setHorizontalAlignment(SwingConstants.LEFT);
-		lblValor.setBounds(160, 279, 109, 17);
+		lblValor.setBounds(249, 241, 109, 17);
 		getContentPane().add(lblValor);
 
 		JButton btnEditar = new JButton("EDITAR");
@@ -135,7 +147,7 @@ public class Principal extends JDialog {
 		});
 		btnEditar.setToolTipText("EDITAR PRODUTO");
 		btnEditar.setIcon(null);
-		btnEditar.setBounds(358, 566, 119, 32);
+		btnEditar.setBounds(358, 517, 119, 32);
 		btnEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 		getContentPane().add(btnEditar);
 
@@ -155,7 +167,7 @@ public class Principal extends JDialog {
 
 		txtV2 = new JTextField();
 		txtV2.setFont(new Font("Arial", Font.BOLD, 12));
-		txtV2.setBounds(160, 322, 109, 20);
+		txtV2.setBounds(249, 284, 109, 20);
 		getContentPane().add(txtV2);
 		txtV2.setColumns(10);
 
@@ -173,7 +185,7 @@ public class Principal extends JDialog {
 			}
 		});
 		btnCalcular.setToolTipText("CALCULAR");
-		btnCalcular.setBounds(651, 566, 119, 32);
+		btnCalcular.setBounds(651, 517, 119, 32);
 		btnCalcular.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 		getContentPane().add(btnCalcular);
 
@@ -186,7 +198,7 @@ public class Principal extends JDialog {
 			}
 		});
 		btnAdicionar.setToolTipText("ADICIONAR PRODUTO");
-		btnAdicionar.setBounds(212, 566, 119, 32);
+		btnAdicionar.setBounds(212, 517, 119, 32);
 		btnAdicionar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 		getContentPane().add(btnAdicionar);
 
@@ -199,227 +211,233 @@ public class Principal extends JDialog {
 		});
 		btnDeletar.setIcon(null);
 		btnDeletar.setToolTipText("REMOVER PRODUTO");
-		btnDeletar.setBounds(505, 566, 119, 32);
+		btnDeletar.setBounds(505, 517, 119, 32);
 		btnDeletar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 		getContentPane().add(btnDeletar);
 
 		txtV3 = new JTextField();
 		txtV3.setFont(new Font("Arial", Font.BOLD, 12));
 		txtV3.setColumns(10);
-		txtV3.setBounds(160, 345, 109, 20);
+		txtV3.setBounds(249, 307, 109, 20);
 		getContentPane().add(txtV3);
 
 		txtV4 = new JTextField();
 		txtV4.setFont(new Font("Arial", Font.BOLD, 12));
 		txtV4.setColumns(10);
-		txtV4.setBounds(160, 368, 109, 20);
+		txtV4.setBounds(249, 330, 109, 20);
 		getContentPane().add(txtV4);
 
 		txtV5 = new JTextField();
 		txtV5.setFont(new Font("Arial", Font.BOLD, 12));
 		txtV5.setColumns(10);
-		txtV5.setBounds(160, 391, 109, 20);
+		txtV5.setBounds(249, 353, 109, 20);
 		getContentPane().add(txtV5);
 
 		txtV6 = new JTextField();
 		txtV6.setFont(new Font("Arial", Font.BOLD, 12));
 		txtV6.setColumns(10);
-		txtV6.setBounds(160, 414, 109, 20);
+		txtV6.setBounds(249, 376, 109, 20);
 		getContentPane().add(txtV6);
 
 		txtV7 = new JTextField();
 		txtV7.setFont(new Font("Arial", Font.BOLD, 12));
 		txtV7.setColumns(10);
-		txtV7.setBounds(160, 437, 109, 20);
+		txtV7.setBounds(249, 399, 109, 20);
 		getContentPane().add(txtV7);
 
 		txtV8 = new JTextField();
 		txtV8.setFont(new Font("Arial", Font.BOLD, 12));
 		txtV8.setColumns(10);
-		txtV8.setBounds(160, 460, 109, 20);
+		txtV8.setBounds(249, 422, 109, 20);
 		getContentPane().add(txtV8);
 
 		txtV9 = new JTextField();
 		txtV9.setFont(new Font("Arial", Font.BOLD, 12));
 		txtV9.setColumns(10);
-		txtV9.setBounds(160, 483, 109, 20);
+		txtV9.setBounds(249, 445, 109, 20);
 		getContentPane().add(txtV9);
 
 		txtV10 = new JTextField();
 		txtV10.setFont(new Font("Arial", Font.BOLD, 12));
 		txtV10.setColumns(10);
-		txtV10.setBounds(160, 506, 109, 20);
+		txtV10.setBounds(249, 468, 109, 20);
 		getContentPane().add(txtV10);
 
 		txtV1 = new JTextField();
 		txtV1.setFont(new Font("Arial", Font.BOLD, 12));
 		txtV1.setColumns(10);
-		txtV1.setBounds(160, 299, 109, 20);
+		txtV1.setBounds(249, 261, 109, 20);
 		getContentPane().add(txtV1);
 
 		cmb1 = new JComboBox();
 		cmb1.setModel(new DefaultComboBoxModel(new String[] { "PAGO", "N\u00C3O PAGO" }));
 		cmb1.setFont(new Font("Arial", Font.BOLD, 12));
-		cmb1.setBounds(279, 322, 109, 20);
+		cmb1.setBounds(368, 284, 109, 20);
 		getContentPane().add(cmb1);
 
 		cmb2 = new JComboBox();
 		cmb2.setModel(new DefaultComboBoxModel(new String[] { "PAGO", "N\u00C3O PAGO" }));
 		cmb2.setFont(new Font("Arial", Font.BOLD, 12));
-		cmb2.setBounds(279, 345, 109, 20);
+		cmb2.setBounds(368, 307, 109, 20);
 		getContentPane().add(cmb2);
 
 		cmb3 = new JComboBox();
 		cmb3.setModel(new DefaultComboBoxModel(new String[] { "PAGO", "N\u00C3O PAGO" }));
 		cmb3.setFont(new Font("Arial", Font.BOLD, 12));
-		cmb3.setBounds(279, 368, 109, 20);
+		cmb3.setBounds(368, 330, 109, 20);
 		getContentPane().add(cmb3);
 
 		cmb4 = new JComboBox();
 		cmb4.setModel(new DefaultComboBoxModel(new String[] { "PAGO", "N\u00C3O PAGO" }));
 		cmb4.setFont(new Font("Arial", Font.BOLD, 12));
-		cmb4.setBounds(279, 391, 109, 20);
+		cmb4.setBounds(368, 353, 109, 20);
 		getContentPane().add(cmb4);
 
 		cmb5 = new JComboBox();
 		cmb5.setModel(new DefaultComboBoxModel(new String[] { "PAGO", "N\u00C3O PAGO" }));
 		cmb5.setFont(new Font("Arial", Font.BOLD, 12));
-		cmb5.setBounds(279, 414, 109, 20);
+		cmb5.setBounds(368, 376, 109, 20);
 		getContentPane().add(cmb5);
 
 		cmb6 = new JComboBox();
 		cmb6.setModel(new DefaultComboBoxModel(new String[] { "PAGO", "N\u00C3O PAGO" }));
 		cmb6.setFont(new Font("Arial", Font.BOLD, 12));
-		cmb6.setBounds(279, 437, 109, 20);
+		cmb6.setBounds(368, 399, 109, 20);
 		getContentPane().add(cmb6);
 
 		cmb7 = new JComboBox();
 		cmb7.setModel(new DefaultComboBoxModel(new String[] { "PAGO", "N\u00C3O PAGO" }));
 		cmb7.setFont(new Font("Arial", Font.BOLD, 12));
-		cmb7.setBounds(279, 460, 109, 20);
+		cmb7.setBounds(368, 422, 109, 20);
 		getContentPane().add(cmb7);
 
 		cmb8 = new JComboBox();
 		cmb8.setModel(new DefaultComboBoxModel(new String[] { "PAGO", "N\u00C3O PAGO" }));
 		cmb8.setFont(new Font("Arial", Font.BOLD, 12));
-		cmb8.setBounds(279, 483, 109, 20);
+		cmb8.setBounds(368, 445, 109, 20);
 		getContentPane().add(cmb8);
 
 		cmb9 = new JComboBox();
 		cmb9.setModel(new DefaultComboBoxModel(new String[] { "PAGO", "N\u00C3O PAGO" }));
 		cmb9.setFont(new Font("Arial", Font.BOLD, 12));
-		cmb9.setBounds(279, 506, 109, 20);
+		cmb9.setBounds(368, 468, 109, 20);
 		getContentPane().add(cmb9);
 
 		JLabel lblSituacao = new JLabel("SITUA\u00C7\u00C3O");
 		lblSituacao.setHorizontalAlignment(SwingConstants.LEFT);
 		lblSituacao.setFont(new Font("Arial", Font.BOLD, 12));
-		lblSituacao.setBounds(279, 279, 109, 17);
+		lblSituacao.setBounds(368, 241, 109, 17);
 		getContentPane().add(lblSituacao);
 
 		lblMes = new JLabel("M\u00CAS");
 		lblMes.setHorizontalAlignment(SwingConstants.LEFT);
 		lblMes.setFont(new Font("Arial", Font.BOLD, 12));
-		lblMes.setBounds(24, 298, 140, 20);
+		lblMes.setBounds(113, 260, 140, 20);
 		getContentPane().add(lblMes);
 
 		lblBanco = new JLabel("BANCO");
 		lblBanco.setHorizontalAlignment(SwingConstants.LEFT);
 		lblBanco.setFont(new Font("Arial", Font.BOLD, 12));
-		lblBanco.setBounds(24, 322, 140, 20);
+		lblBanco.setBounds(113, 284, 140, 20);
 		getContentPane().add(lblBanco);
 
 		lblC1 = new JLabel("CART\u00C3O 1");
 		lblC1.setHorizontalAlignment(SwingConstants.LEFT);
 		lblC1.setFont(new Font("Arial", Font.BOLD, 12));
-		lblC1.setBounds(24, 345, 140, 20);
+		lblC1.setBounds(113, 307, 140, 20);
 		getContentPane().add(lblC1);
 
 		lblC2 = new JLabel("CART\u00C3O 2");
 		lblC2.setHorizontalAlignment(SwingConstants.LEFT);
 		lblC2.setFont(new Font("Arial", Font.BOLD, 12));
-		lblC2.setBounds(24, 368, 140, 20);
+		lblC2.setBounds(113, 330, 140, 20);
 		getContentPane().add(lblC2);
 
 		lblLuz = new JLabel("CONTA DE LUZ");
 		lblLuz.setHorizontalAlignment(SwingConstants.LEFT);
 		lblLuz.setFont(new Font("Arial", Font.BOLD, 12));
-		lblLuz.setBounds(24, 390, 140, 20);
+		lblLuz.setBounds(113, 352, 140, 20);
 		getContentPane().add(lblLuz);
 
 		lblInternet = new JLabel("INTERNET");
 		lblInternet.setHorizontalAlignment(SwingConstants.LEFT);
 		lblInternet.setFont(new Font("Arial", Font.BOLD, 12));
-		lblInternet.setBounds(24, 414, 140, 20);
+		lblInternet.setBounds(113, 376, 140, 20);
 		getContentPane().add(lblInternet);
 
 		lblFacul = new JLabel("FACULDADE");
 		lblFacul.setHorizontalAlignment(SwingConstants.LEFT);
 		lblFacul.setFont(new Font("Arial", Font.BOLD, 12));
-		lblFacul.setBounds(24, 437, 140, 20);
+		lblFacul.setBounds(113, 399, 140, 20);
 		getContentPane().add(lblFacul);
 
 		lblPessoal = new JLabel("CONTAS PESSOAIS");
 		lblPessoal.setHorizontalAlignment(SwingConstants.LEFT);
 		lblPessoal.setFont(new Font("Arial", Font.BOLD, 12));
-		lblPessoal.setBounds(24, 460, 140, 20);
+		lblPessoal.setBounds(113, 422, 140, 20);
 		getContentPane().add(lblPessoal);
 
 		lblCasa = new JLabel("CONTAS CASA");
 		lblCasa.setHorizontalAlignment(SwingConstants.LEFT);
 		lblCasa.setFont(new Font("Arial", Font.BOLD, 12));
-		lblCasa.setBounds(24, 483, 140, 20);
+		lblCasa.setBounds(113, 445, 140, 20);
 		getContentPane().add(lblCasa);
 
 		lblCelular = new JLabel("CELULAR");
 		lblCelular.setHorizontalAlignment(SwingConstants.LEFT);
 		lblCelular.setFont(new Font("Arial", Font.BOLD, 12));
-		lblCelular.setBounds(24, 506, 140, 20);
+		lblCelular.setBounds(113, 468, 140, 20);
 		getContentPane().add(lblCelular);
 
 		txtNull = new JTextField();
 		txtNull.setEditable(false);
 		txtNull.setEnabled(false);
-		txtNull.setBounds(279, 299, 109, 20);
+		txtNull.setBounds(368, 261, 109, 20);
 		getContentPane().add(txtNull);
 		txtNull.setColumns(10);
 		
 		JLabel lblGanhos = new JLabel("GANHOS");
 		lblGanhos.setHorizontalAlignment(SwingConstants.LEFT);
 		lblGanhos.setFont(new Font("Arial", Font.BOLD, 12));
-		lblGanhos.setBounds(454, 279, 109, 17);
+		lblGanhos.setBounds(505, 240, 109, 17);
 		getContentPane().add(lblGanhos);
 		
 		JLabel lblDbitos = new JLabel("D\u00C9BITOS");
 		lblDbitos.setHorizontalAlignment(SwingConstants.LEFT);
 		lblDbitos.setFont(new Font("Arial", Font.BOLD, 12));
-		lblDbitos.setBounds(599, 279, 109, 17);
+		lblDbitos.setBounds(624, 241, 109, 17);
 		getContentPane().add(lblDbitos);
 		
 		JLabel lblSobra = new JLabel("SOBRA");
 		lblSobra.setHorizontalAlignment(SwingConstants.LEFT);
 		lblSobra.setFont(new Font("Arial", Font.BOLD, 12));
-		lblSobra.setBounds(747, 279, 109, 17);
+		lblSobra.setBounds(743, 241, 109, 17);
 		getContentPane().add(lblSobra);
 		
 		txtGanhos = new JTextField();
 		txtGanhos.setFont(new Font("Arial", Font.BOLD, 12));
 		txtGanhos.setColumns(10);
-		txtGanhos.setBounds(454, 299, 109, 20);
+		txtGanhos.setBounds(505, 260, 109, 20);
 		getContentPane().add(txtGanhos);
 		
 		txtDebitos = new JTextField();
 		
 		txtDebitos.setFont(new Font("Arial", Font.BOLD, 12));
 		txtDebitos.setColumns(10);
-		txtDebitos.setBounds(599, 299, 109, 20);
+		txtDebitos.setBounds(624, 261, 109, 20);
 		getContentPane().add(txtDebitos);
 		
 		txtSobra = new JTextField();
 		txtSobra.setFont(new Font("Arial", Font.BOLD, 12));
 		txtSobra.setColumns(10);
-		txtSobra.setBounds(747, 299, 109, 20);
+		txtSobra.setBounds(743, 261, 109, 20);
 		getContentPane().add(txtSobra);
+		
+		lblData = new JLabel("DATA");
+		lblData.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblData.setFont(new Font("Arial", Font.BOLD, 12));
+		lblData.setBounds(684, 33, 276, 14);
+		getContentPane().add(lblData);
 
 		conexao = ModuloConexao.conector();// conectar com o banco (conexão fechada em login)
 
@@ -642,4 +660,15 @@ public class Principal extends JDialog {
 
 	}
 	
+	private void alterarLabel() {// metodo pra mostrar data e hora no lugar do Frame
+		//Date data = new Date();
+		//DateFormat formatador =
+        //DateFormat.getDateInstance(DateFormat.FULL);		
+		//lblData.setText(formatador.format(data));
+		
+		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        LocalDateTime data = LocalDateTime.now();
+
+        lblData.setText(data.format(formatador));
+	}
 }
