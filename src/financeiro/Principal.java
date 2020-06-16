@@ -666,7 +666,6 @@ public class Principal extends JDialog {
 			try {
 				pst = conexao.prepareStatement(delete);
 				pst.setString(1, txtV1.getText());
-
 				int removido = pst.executeUpdate();
 				limpar();
 				if (removido == 1) {
