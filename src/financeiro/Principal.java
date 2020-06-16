@@ -36,6 +36,11 @@ import java.awt.event.WindowEvent;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.Cursor;
+import javax.swing.DropMode;
+import java.awt.ComponentOrientation;
+import java.awt.Component;
+import java.awt.Dimension;
+import javax.swing.ListSelectionModel;
 
 public class Principal extends JDialog {
 	private JTextField txtPesquisar;
@@ -157,6 +162,13 @@ public class Principal extends JDialog {
 		getContentPane().add(scrollPane);
 
 		tblPrincipal = new JTable();
+		tblPrincipal.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		tblPrincipal.setFocusTraversalKeysEnabled(false);
+		tblPrincipal.setFocusCycleRoot(true);
+		tblPrincipal.setAlignmentX(Component.LEFT_ALIGNMENT);
+		tblPrincipal.setAlignmentY(Component.TOP_ALIGNMENT);
+		tblPrincipal.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		tblPrincipal.setDropMode(DropMode.INSERT);
 		tblPrincipal.setFont(new Font("Arial", Font.BOLD, 12));
 		tblPrincipal.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
@@ -461,6 +473,12 @@ public class Principal extends JDialog {
 		btnLimpar.setFont(new Font("Arial", Font.BOLD, 11));
 		btnLimpar.setBounds(464, 512, 100, 32);
 		getContentPane().add(btnLimpar);
+		
+		JLabel lblNewLabel_1 = new JLabel("DEVELOPED BY ANDR\u00C9 CARVALHO ");
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setFont(new Font("Arial", Font.BOLD, 12));
+		lblNewLabel_1.setBounds(181, 568, 228, 14);
+		getContentPane().add(lblNewLabel_1);
 
 		conexao = ModuloConexao.conector();// conectar com o banco (conexão fechada em login)
 
