@@ -425,6 +425,7 @@ public class Principal extends JDialog {
 		getContentPane().add(lblSobra);
 
 		txtGanhos = new JTextField();
+		txtGanhos.setText("1500,00");
 		txtGanhos.setFont(new Font("Arial", Font.BOLD, 12));
 		txtGanhos.setColumns(10);
 		txtGanhos.setBounds(505, 260, 109, 20);
@@ -688,6 +689,12 @@ public class Principal extends JDialog {
 		valor2 = Double.parseDouble(txtDebitos.getText().replace(",", "."));
 		resultado = valor1 - valor2;
 		txtSobra.setText(formatador.format(resultado));
+		if (resultado >= 0) {
+			JOptionPane.showMessageDialog(null," Você tem saldo para gastar este mês no valor de : "+ txtSobra.getText() + " Reais ", "Saldo atual", JOptionPane.INFORMATION_MESSAGE);
+		} else {
+			JOptionPane.showMessageDialog(null," Você tem saldo negativo este mês no valor de : "+ txtSobra.getText() + " Reais ", "Saldo atual",JOptionPane.INFORMATION_MESSAGE);					
+		} 
+		
 		limpar();
 	}
 
