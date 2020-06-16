@@ -272,63 +272,63 @@ public class Principal extends JDialog {
 
 		cmb1 = new JComboBox();
 		cmb1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		cmb1.setModel(new DefaultComboBoxModel(new String[] {"", "PAGO", "N\u00C3O PAGO"}));
+		cmb1.setModel(new DefaultComboBoxModel(new String[] { "", "PAGO", "N\u00C3O PAGO" }));
 		cmb1.setFont(new Font("Arial", Font.BOLD, 12));
 		cmb1.setBounds(368, 284, 109, 20);
 		getContentPane().add(cmb1);
 
 		cmb2 = new JComboBox();
 		cmb2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		cmb2.setModel(new DefaultComboBoxModel(new String[] {"", "PAGO", "N\u00C3O PAGO"}));
+		cmb2.setModel(new DefaultComboBoxModel(new String[] { "", "PAGO", "N\u00C3O PAGO" }));
 		cmb2.setFont(new Font("Arial", Font.BOLD, 12));
 		cmb2.setBounds(368, 307, 109, 20);
 		getContentPane().add(cmb2);
 
 		cmb3 = new JComboBox();
 		cmb3.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		cmb3.setModel(new DefaultComboBoxModel(new String[] {"", "PAGO", "N\u00C3O PAGO"}));
+		cmb3.setModel(new DefaultComboBoxModel(new String[] { "", "PAGO", "N\u00C3O PAGO" }));
 		cmb3.setFont(new Font("Arial", Font.BOLD, 12));
 		cmb3.setBounds(368, 330, 109, 20);
 		getContentPane().add(cmb3);
 
 		cmb4 = new JComboBox();
 		cmb4.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		cmb4.setModel(new DefaultComboBoxModel(new String[] {"", "PAGO", "N\u00C3O PAGO"}));
+		cmb4.setModel(new DefaultComboBoxModel(new String[] { "", "PAGO", "N\u00C3O PAGO" }));
 		cmb4.setFont(new Font("Arial", Font.BOLD, 12));
 		cmb4.setBounds(368, 353, 109, 20);
 		getContentPane().add(cmb4);
 
 		cmb5 = new JComboBox();
 		cmb5.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		cmb5.setModel(new DefaultComboBoxModel(new String[] {"", "PAGO", "N\u00C3O PAGO"}));
+		cmb5.setModel(new DefaultComboBoxModel(new String[] { "", "PAGO", "N\u00C3O PAGO" }));
 		cmb5.setFont(new Font("Arial", Font.BOLD, 12));
 		cmb5.setBounds(368, 376, 109, 20);
 		getContentPane().add(cmb5);
 
 		cmb6 = new JComboBox();
 		cmb6.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		cmb6.setModel(new DefaultComboBoxModel(new String[] {"", "PAGO", "N\u00C3O PAGO"}));
+		cmb6.setModel(new DefaultComboBoxModel(new String[] { "", "PAGO", "N\u00C3O PAGO" }));
 		cmb6.setFont(new Font("Arial", Font.BOLD, 12));
 		cmb6.setBounds(368, 399, 109, 20);
 		getContentPane().add(cmb6);
 
 		cmb7 = new JComboBox();
 		cmb7.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		cmb7.setModel(new DefaultComboBoxModel(new String[] {"", "PAGO", "N\u00C3O PAGO"}));
+		cmb7.setModel(new DefaultComboBoxModel(new String[] { "", "PAGO", "N\u00C3O PAGO" }));
 		cmb7.setFont(new Font("Arial", Font.BOLD, 12));
 		cmb7.setBounds(368, 422, 109, 20);
 		getContentPane().add(cmb7);
 
 		cmb8 = new JComboBox();
 		cmb8.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		cmb8.setModel(new DefaultComboBoxModel(new String[] {"", "PAGO", "N\u00C3O PAGO"}));
+		cmb8.setModel(new DefaultComboBoxModel(new String[] { "", "PAGO", "N\u00C3O PAGO" }));
 		cmb8.setFont(new Font("Arial", Font.BOLD, 12));
 		cmb8.setBounds(368, 445, 109, 20);
 		getContentPane().add(cmb8);
 
 		cmb9 = new JComboBox();
 		cmb9.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		cmb9.setModel(new DefaultComboBoxModel(new String[] {"", "PAGO", "N\u00C3O PAGO"}));
+		cmb9.setModel(new DefaultComboBoxModel(new String[] { "", "PAGO", "N\u00C3O PAGO" }));
 		cmb9.setFont(new Font("Arial", Font.BOLD, 12));
 		cmb9.setBounds(368, 468, 109, 20);
 		getContentPane().add(cmb9);
@@ -449,7 +449,7 @@ public class Principal extends JDialog {
 		lblData.setFont(new Font("Arial", Font.BOLD, 12));
 		lblData.setBounds(684, 33, 276, 14);
 		getContentPane().add(lblData);
-		
+
 		JButton btnLimpar = new JButton("LIMPAR");
 		btnLimpar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnLimpar.addActionListener(new ActionListener() {
@@ -690,11 +690,15 @@ public class Principal extends JDialog {
 		resultado = valor1 - valor2;
 		txtSobra.setText(formatador.format(resultado));
 		if (resultado >= 0) {
-			JOptionPane.showMessageDialog(null," Você tem saldo para gastar este mês no valor de : "+ txtSobra.getText() + " Reais ", "Saldo atual", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null,
+					" Você tem saldo para gastar este mês no valor de : " + txtSobra.getText() + " Reais ",
+					"Saldo atual", JOptionPane.INFORMATION_MESSAGE);
 		} else {
-			JOptionPane.showMessageDialog(null," Você tem saldo negativo este mês no valor de : "+ txtSobra.getText() + " Reais ", "Saldo atual",JOptionPane.INFORMATION_MESSAGE);					
-		} 
-		
+			JOptionPane.showMessageDialog(null,
+					" Você tem saldo negativo este mês no valor de : " + txtSobra.getText() + " Reais ", "Saldo atual",
+					JOptionPane.INFORMATION_MESSAGE);
+		}
+
 		limpar();
 	}
 
@@ -703,7 +707,7 @@ public class Principal extends JDialog {
 		LocalDateTime data = LocalDateTime.now();
 		lblData.setText(data.format(formatador));
 	}
-	
+
 	private void limpar2() {
 		txtV1.setText(null);
 		txtV2.setText(null);
@@ -727,5 +731,5 @@ public class Principal extends JDialog {
 		txtGanhos.setText(null);
 		txtDebitos.setText(null);
 		txtSobra.setText(null);
-}
+	}
 }
