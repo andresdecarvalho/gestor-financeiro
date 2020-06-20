@@ -55,10 +55,6 @@ public class Principal extends JDialog {
 	private JTextField txtV10;
 	private JTextField txtV1;
 	private JTextField txtNull;
-
-	Connection conexao = null; // conexão
-	PreparedStatement pst = null; // executar uma query (script) sql
-	ResultSet rs = null; // "trazer" os dados
 	private JTextField txtV3;
 	private JComboBox cmb1;
 	private JComboBox cmb2;
@@ -83,6 +79,10 @@ public class Principal extends JDialog {
 	private JTextField txtDebitos;
 	private JTextField txtSobra;
 	private JLabel lblData;
+	
+	Connection conexao = null; // conexão
+	PreparedStatement pst = null; // executar uma query (script) sql
+	ResultSet rs = null; // "trazer" os dados
 
 	/**
 	 * Launch the application.
@@ -105,17 +105,15 @@ public class Principal extends JDialog {
 	 * Create the dialog.
 	 */
 	public Principal() {
+		setResizable(false);
 		setFont(new Font("Arial", Font.BOLD, 14));
 		setTitle("Gestor Financeiro");
-		// setIconImage(
-		// Toolkit.getDefaultToolkit().getImage(Principal.class.getResource("/br/com/gde/icones/Principal.png")));
 		setModal(true);
-		setResizable(false);
-		setBounds(100, 100, 603, 648);
+		setBounds(100, 100, 598, 648);
 		getContentPane().setLayout(null);
 		this.setLocationRelativeTo(null);
 
-		addWindowListener(new WindowAdapter() {// ação para modificar a label e mostrr data e hora
+		addWindowListener(new WindowAdapter() {// ação para modificar a label e mostrar data e hora
 			public void windowActivated(WindowEvent e) {
 				alterarLabel();
 			}
@@ -133,8 +131,6 @@ public class Principal extends JDialog {
 		txtPesquisar.setColumns(10);
 
 		JLabel lblNewLabel = new JLabel("");
-		// lblNewLabel.setIcon(new
-		// ImageIcon(Principal.class.getResource("/br/com/gde/icones/pesquisar.png")));
 		lblNewLabel.setBounds(295, 33, 32, 32);
 		getContentPane().add(lblNewLabel);
 
@@ -162,13 +158,12 @@ public class Principal extends JDialog {
 		getContentPane().add(scrollPane);
 
 		tblPrincipal = new JTable();
-		tblPrincipal.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		tblPrincipal.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		tblPrincipal.setFocusTraversalKeysEnabled(false);
 		tblPrincipal.setFocusCycleRoot(true);
 		tblPrincipal.setAlignmentX(Component.LEFT_ALIGNMENT);
 		tblPrincipal.setAlignmentY(Component.TOP_ALIGNMENT);
 		tblPrincipal.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		tblPrincipal.setDropMode(DropMode.INSERT);
 		tblPrincipal.setFont(new Font("Arial", Font.BOLD, 12));
 		tblPrincipal.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
@@ -176,7 +171,13 @@ public class Principal extends JDialog {
 			}
 		});
 		scrollPane.setViewportView(tblPrincipal);
-		tblPrincipal.setModel(new DefaultTableModel(new Object[][] {}, new String[] {}));
+		tblPrincipal.setModel(new DefaultTableModel(
+			new Object[][] {
+				{},
+			},
+			new String[] {
+			}
+		));
 
 		txtV2 = new JTextField();
 		txtV2.setFont(new Font("Arial", Font.BOLD, 12));
@@ -459,7 +460,7 @@ public class Principal extends JDialog {
 		lblData = new JLabel("DATA");
 		lblData.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblData.setFont(new Font("Arial", Font.BOLD, 12));
-		lblData.setBounds(424, 33, 140, 14);
+		lblData.setBounds(320, 33, 244, 14);
 		getContentPane().add(lblData);
 
 		JButton btnLimpar = new JButton("LIMPAR");
@@ -500,7 +501,7 @@ public class Principal extends JDialog {
 
 	// metodo para pesquisar Principal dinamicamente
 	private void pesquisarPrincipal() {
-		String consultar = "select * from tb_contas where mes like?";
+		String consultar = "select * from tb_contas where mes like ?";
 		try {
 			pst = conexao.prepareStatement(consultar);
 			// atenção ao "%" na passagem do parametro
@@ -689,6 +690,8 @@ public class Principal extends JDialog {
 				if (removido == 1) {
 					limpar();
 					JOptionPane.showMessageDialog(null, "Contas deste mês removidas");
+				} else {
+					JOptionPane.showMessageDialog(null, "Não foi possivel remover as contas deste mês ! \nCampos sem preencher !");
 				}
 
 			} catch (Exception e) {
@@ -719,8 +722,8 @@ public class Principal extends JDialog {
 		limpar();
 	}
 
-	private void alterarLabel() {// metodo pra mostrar data e hora no lugar do Frame
-		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+	private void alterarLabel() {// metodo pra mostrar data e hora no lugar do Frame link https://www.it-swarm.dev/pt/java/como-analisarformatar-datas-com-localdatetime-java-8/1044545622/
+		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("E dd/MM/yyyy HH:mm");
 		LocalDateTime data = LocalDateTime.now();
 		lblData.setText(data.format(formatador));
 	}
@@ -748,5 +751,6 @@ public class Principal extends JDialog {
 		txtGanhos.setText(null);
 		txtDebitos.setText(null);
 		txtSobra.setText(null);
+		txtPesquisar.setText(null);
 	}
 }
