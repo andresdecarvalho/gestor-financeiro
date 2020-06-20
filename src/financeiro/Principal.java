@@ -352,7 +352,7 @@ public class Principal extends JDialog {
 		lblSituacao.setBounds(300, 236, 109, 17);
 		getContentPane().add(lblSituacao);
 
-		lblMes = new JLabel("M\u00CAS");
+		lblMes = new JLabel("M\u00CAS ATUAL");
 		lblMes.setHorizontalAlignment(SwingConstants.LEFT);
 		lblMes.setFont(new Font("Arial", Font.BOLD, 12));
 		lblMes.setBounds(45, 255, 140, 20);
