@@ -134,7 +134,7 @@ public class Principal extends JDialog {
 		lblNewLabel.setBounds(295, 33, 32, 32);
 		getContentPane().add(lblNewLabel);
 
-		JLabel lblValor = new JLabel("VALOR");
+		JLabel lblValor = new JLabel("VALOR EM R$");
 		lblValor.setFont(new Font("Arial", Font.BOLD, 12));
 		lblValor.setHorizontalAlignment(SwingConstants.LEFT);
 		lblValor.setBounds(181, 236, 109, 17);
@@ -419,19 +419,19 @@ public class Principal extends JDialog {
 		getContentPane().add(txtNull);
 		txtNull.setColumns(10);
 
-		JLabel lblGanhos = new JLabel("GANHOS");
+		JLabel lblGanhos = new JLabel("RECEITAS EM R$");
 		lblGanhos.setHorizontalAlignment(SwingConstants.LEFT);
 		lblGanhos.setFont(new Font("Arial", Font.BOLD, 12));
 		lblGanhos.setBounds(437, 235, 109, 17);
 		getContentPane().add(lblGanhos);
 
-		JLabel lblDbitos = new JLabel("D\u00C9BITOS");
+		JLabel lblDbitos = new JLabel("D\u00C9BITOS EM R$");
 		lblDbitos.setHorizontalAlignment(SwingConstants.LEFT);
 		lblDbitos.setFont(new Font("Arial", Font.BOLD, 12));
 		lblDbitos.setBounds(437, 302, 109, 17);
 		getContentPane().add(lblDbitos);
 
-		JLabel lblSobra = new JLabel("SOBRA");
+		JLabel lblSobra = new JLabel("SALDO EM R$");
 		lblSobra.setHorizontalAlignment(SwingConstants.LEFT);
 		lblSobra.setFont(new Font("Arial", Font.BOLD, 12));
 		lblSobra.setBounds(437, 371, 109, 17);
