@@ -79,7 +79,7 @@ public class Principal extends JDialog {
 	private JTextField txtDebitos;
 	private JTextField txtSobra;
 	private JLabel lblData;
-	
+
 	Connection conexao = null; // conexão
 	PreparedStatement pst = null; // executar uma query (script) sql
 	ResultSet rs = null; // "trazer" os dados
@@ -171,13 +171,7 @@ public class Principal extends JDialog {
 			}
 		});
 		scrollPane.setViewportView(tblPrincipal);
-		tblPrincipal.setModel(new DefaultTableModel(
-			new Object[][] {
-				{},
-			},
-			new String[] {
-			}
-		));
+		tblPrincipal.setModel(new DefaultTableModel(new Object[][] { {}, }, new String[] {}));
 
 		txtV2 = new JTextField();
 		txtV2.setFont(new Font("Arial", Font.BOLD, 12));
@@ -474,7 +468,7 @@ public class Principal extends JDialog {
 		btnLimpar.setFont(new Font("Arial", Font.BOLD, 11));
 		btnLimpar.setBounds(464, 512, 100, 32);
 		getContentPane().add(btnLimpar);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("DEVELOPED BY ANDR\u00C9 CARVALHO ");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setFont(new Font("Arial", Font.BOLD, 12));
@@ -691,7 +685,8 @@ public class Principal extends JDialog {
 					limpar();
 					JOptionPane.showMessageDialog(null, "Contas deste mês removidas");
 				} else {
-					JOptionPane.showMessageDialog(null, "Não foi possivel remover as contas deste mês ! \nCampos sem preencher !");
+					JOptionPane.showMessageDialog(null,
+							"Não foi possivel remover as contas deste mês ! \nCampos sem preencher !");
 				}
 
 			} catch (Exception e) {
@@ -722,7 +717,8 @@ public class Principal extends JDialog {
 		limpar();
 	}
 
-	private void alterarLabel() {// metodo pra mostrar data e hora no lugar do Frame link https://www.it-swarm.dev/pt/java/como-analisarformatar-datas-com-localdatetime-java-8/1044545622/
+	private void alterarLabel() {// metodo pra mostrar data e hora no lugar do Frame link
+									// https://www.it-swarm.dev/pt/java/como-analisarformatar-datas-com-localdatetime-java-8/1044545622/
 		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("E dd/MM/yyyy HH:mm");
 		LocalDateTime data = LocalDateTime.now();
 		lblData.setText(data.format(formatador));
