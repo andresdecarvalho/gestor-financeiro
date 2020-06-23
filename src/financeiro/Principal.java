@@ -700,6 +700,14 @@ public class Principal extends JDialog {
 	}
 
 	private void calcular() {
+			
+		if (txtV1.getText().isEmpty() || txtV2.getText().isEmpty() || txtV3.getText().isEmpty()
+				|| txtV4.getText().isEmpty() || txtV5.getText().isEmpty() || txtV6.getText().isEmpty()
+				|| txtV7.getText().isEmpty() || txtV8.getText().isEmpty() || txtV9.getText().isEmpty()
+				|| txtV10.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Preencha os campos obrigatórios");
+		}
+		
 		double valor1, valor2, resultado;
 		DecimalFormat formatador = new DecimalFormat("0.00");
 		valor1 = Double.parseDouble(txtGanhos.getText().replace(",", "."));
