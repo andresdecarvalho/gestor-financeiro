@@ -474,8 +474,11 @@ public class Principal extends JDialog {
 		lblNewLabel_1.setFont(new Font("Arial", Font.BOLD, 12));
 		lblNewLabel_1.setBounds(181, 568, 228, 14);
 		getContentPane().add(lblNewLabel_1);
-		
-		javax.swing.UIManager.put("OptionPane.messageFont", new Font("Calibri", Font.BOLD, 14)); //linha para personalizar o text e font do Joptionpane
+
+		javax.swing.UIManager.put("OptionPane.messageFont", new Font("Calibri", Font.BOLD, 14)); // linha para
+																									// personalizar o
+																									// text e font do
+																									// Joptionpane
 
 		conexao = ModuloConexao.conector();// conectar com o banco (conexão fechada em login)
 
@@ -556,7 +559,8 @@ public class Principal extends JDialog {
 				|| txtV10.getText().isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Preencha os campos obrigatórios");
 		} else {
-			String editar = "update tb_contas set banco=?, sBanco=?, cartaoB1=?, sCartaoB1=?, cartaoB2=?, sCartaoB2=?, luz=?, sLuz=?, net=?, sNet=?, facul=?, sFacul=?, pessoal=?, sPessoal=?, casa=?, sCasa=?, celular=?, sCelular=? where mes= ?";
+			String editar = "update tb_contas set banco=?, sBanco=?, cartaoB1=?, sCartaoB1=?, cartaoB2=?, sCartaoB2=?, luz=?, sLuz=?, "
+					+ "net=?, sNet=?, facul=?, sFacul=?, pessoal=?, sPessoal=?, casa=?, sCasa=?, celular=?, sCelular=? where mes= ?";
 			try {
 				pst = conexao.prepareStatement(editar);
 				pst.setString(1, txtV2.getText().replace(",", "."));
@@ -630,7 +634,8 @@ public class Principal extends JDialog {
 			JOptionPane.showMessageDialog(null, "Preencha os campos Obrigatórios");
 		} else {
 			// insert
-			String create = "insert into tb_contas(mes, banco, sBanco, cartaoB1, sCartaoB1, cartaoB2, sCartaoB2, luz, sLuz, net, sNet, facul, sFacul, pessoal, sPessoal, casa, sCasa, celular, sCelular) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+			String create = "insert into tb_contas(mes, banco, sBanco, cartaoB1, sCartaoB1, cartaoB2, sCartaoB2, luz, sLuz, net, sNet, facul, "
+					+ "sFacul, pessoal, sPessoal, casa, sCasa, celular, sCelular) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			try {
 				pst = conexao.prepareStatement(create);
 				// armazenar no banco o conteúdo do Jframe Formulário
@@ -700,14 +705,14 @@ public class Principal extends JDialog {
 	}
 
 	private void calcular() {
-			
+
 		if (txtV1.getText().isEmpty() || txtV2.getText().isEmpty() || txtV3.getText().isEmpty()
 				|| txtV4.getText().isEmpty() || txtV5.getText().isEmpty() || txtV6.getText().isEmpty()
 				|| txtV7.getText().isEmpty() || txtV8.getText().isEmpty() || txtV9.getText().isEmpty()
 				|| txtV10.getText().isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Preencha os campos obrigatórios");
 		}
-		
+
 		double valor1, valor2, resultado;
 		DecimalFormat formatador = new DecimalFormat("0.00");
 		valor1 = Double.parseDouble(txtGanhos.getText().replace(",", "."));
