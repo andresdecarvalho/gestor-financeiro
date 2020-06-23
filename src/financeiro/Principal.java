@@ -474,6 +474,8 @@ public class Principal extends JDialog {
 		lblNewLabel_1.setFont(new Font("Arial", Font.BOLD, 12));
 		lblNewLabel_1.setBounds(181, 568, 228, 14);
 		getContentPane().add(lblNewLabel_1);
+		
+		javax.swing.UIManager.put("OptionPane.messageFont", new Font("Calibri", Font.BOLD, 14)); //linha para personalizar o text e font do Joptionpane
 
 		conexao = ModuloConexao.conector();// conectar com o banco (conexão fechada em login)
 
