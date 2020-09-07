@@ -43,8 +43,6 @@ import java.awt.Dimension;
 import javax.swing.ListSelectionModel;
 
 public class Principal extends JDialog {
-	private JTextField txtPesquisar;
-	private JTable tblPrincipal;
 	private JTextField txtV2;
 	private JTextField txtV4;
 	private JTextField txtV5;
@@ -83,6 +81,7 @@ public class Principal extends JDialog {
 	Connection conexao = null; // conexão
 	PreparedStatement pst = null; // executar uma query (script) sql
 	ResultSet rs = null; // "trazer" os dados
+	private JTextField txtPesq;
 
 	/**
 	 * Launch the application.
@@ -119,17 +118,6 @@ public class Principal extends JDialog {
 			}
 		});
 
-		txtPesquisar = new JTextField();
-		txtPesquisar.setFont(new Font("Arial", Font.BOLD, 12));
-		txtPesquisar.addKeyListener(new KeyAdapter() {
-			public void keyReleased(KeyEvent e) {
-				pesquisarPrincipal();
-			}
-		});
-		txtPesquisar.setBounds(24, 45, 294, 20);
-		getContentPane().add(txtPesquisar);
-		txtPesquisar.setColumns(10);
-
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setBounds(295, 33, 32, 32);
 		getContentPane().add(lblNewLabel);
@@ -153,26 +141,6 @@ public class Principal extends JDialog {
 		btnEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 		getContentPane().add(btnEditar);
 
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(24, 76, 540, 131);
-		getContentPane().add(scrollPane);
-
-		tblPrincipal = new JTable();
-		tblPrincipal.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-		tblPrincipal.setFocusTraversalKeysEnabled(false);
-		tblPrincipal.setFocusCycleRoot(true);
-		tblPrincipal.setAlignmentX(Component.LEFT_ALIGNMENT);
-		tblPrincipal.setAlignmentY(Component.TOP_ALIGNMENT);
-		tblPrincipal.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		tblPrincipal.setFont(new Font("Arial", Font.BOLD, 12));
-		tblPrincipal.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-				setarCampos();
-			}
-		});
-		scrollPane.setViewportView(tblPrincipal);
-		tblPrincipal.setModel(new DefaultTableModel(new Object[][] { {}, }, new String[] {}));
-
 		txtV2 = new JTextField();
 		txtV2.setFont(new Font("Arial", Font.BOLD, 12));
 		txtV2.setBounds(181, 279, 109, 20);
@@ -181,7 +149,7 @@ public class Principal extends JDialog {
 
 		JLabel lblPesquisa = new JLabel("DIGITE O M\u00CAS");
 		lblPesquisa.setFont(new Font("Arial", Font.BOLD, 12));
-		lblPesquisa.setBounds(24, 25, 286, 14);
+		lblPesquisa.setBounds(45, 186, 124, 14);
 		getContentPane().add(lblPesquisa);
 
 		JButton btnCalcular = new JButton("CALCULAR");
@@ -452,9 +420,9 @@ public class Principal extends JDialog {
 		getContentPane().add(txtSobra);
 
 		lblData = new JLabel("DATA");
-		lblData.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblData.setHorizontalAlignment(SwingConstants.CENTER);
 		lblData.setFont(new Font("Arial", Font.BOLD, 12));
-		lblData.setBounds(320, 33, 244, 14);
+		lblData.setBounds(165, 148, 255, 14);
 		getContentPane().add(lblData);
 
 		JButton btnLimpar = new JButton("LIMPAR");
@@ -474,6 +442,22 @@ public class Principal extends JDialog {
 		lblNewLabel_1.setFont(new Font("Arial", Font.BOLD, 12));
 		lblNewLabel_1.setBounds(181, 568, 228, 14);
 		getContentPane().add(lblNewLabel_1);
+		
+		txtPesq = new JTextField();
+		txtPesq.setFont(new Font("Arial", Font.BOLD, 12));
+		txtPesq.setBounds(181, 183, 228, 20);
+		getContentPane().add(txtPesq);
+		txtPesq.setColumns(10);
+		
+		JButton btnPesq = new JButton("PESQUISAR");
+		btnPesq.setFont(new Font("Arial", Font.BOLD, 12));
+		btnPesq.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				pesquisar();
+			}
+		});
+		btnPesq.setBounds(437, 182, 109, 23);
+		getContentPane().add(btnPesq);
 
 		javax.swing.UIManager.put("OptionPane.messageFont", new Font("Calibri", Font.BOLD, 14)); // linha para
 																									// personalizar o
@@ -485,71 +469,54 @@ public class Principal extends JDialog {
 	}// fim do construtor
 
 	// limpar campos do Jframe
-	private void limpar() {
-		txtPesquisar.setText(null);
-		limparTabela();
+	//private void limpar() {
+		//txtPesquisar.setText(null);
+		//limparTabela();
 
-	}
-
-	// metodo para limpar a tabela
-	private void limparTabela() {
-		while (tblPrincipal.getRowCount() > 0) {
-			((DefaultTableModel) tblPrincipal.getModel()).removeRow(0);
-		}
-	}
-
-	// metodo para pesquisar Principal dinamicamente
-	private void pesquisarPrincipal() {
-		String consultar = "select * from tb_contas where mes like ?";
+	//}
+	
+	private void pesquisar() {
+		String read = "select * from tb_contas where mes = ?"; // ? é um parâmetro
 		try {
-			pst = conexao.prepareStatement(consultar);
-			// atenção ao "%" na passagem do parametro
-			pst.setString(1, txtPesquisar.getText() + "%");
-			rs = pst.executeQuery();
-			// a linha abaixo usa a biblioteca rs2xml.jar para "popular" a tabela
-			tblPrincipal.setModel(DbUtils.resultSetToTableModel(rs));
+			pst = conexao.prepareStatement(read);
+			pst.setString(1, txtPesq.getText()); // substituir o ? pelo valor da caixa de texto de nome txtId
+			rs = pst.executeQuery(); // executa o script e retorna os dados
+			if (rs.next()) {
+				txtV1.setText(rs.getString(1));
+				txtV2.setText(rs.getString(2));
+				cmb1.setSelectedItem(rs.getString(3));
+				txtV3.setText(rs.getString(4));
+				cmb2.setSelectedItem(rs.getString(5));
+				txtV4.setText(rs.getString(6));
+				cmb3.setSelectedItem(rs.getString(7));
+				txtV5.setText(rs.getString(8));
+				cmb4.setSelectedItem(rs.getString(9));
+				txtV6.setText(rs.getString(10));
+				cmb5.setSelectedItem(rs.getString(11));
+				txtV7.setText(rs.getString(12));
+				cmb6.setSelectedItem(rs.getString(13));
+				txtV8.setText(rs.getString(14));
+				cmb7.setSelectedItem(rs.getString(15));
+				txtV9.setText(rs.getString(16));
+				cmb8.setSelectedItem(rs.getString(17));
+				txtV10.setText(rs.getString(18));
+				cmb9.setSelectedItem(rs.getString(19));
+				
+			} else {
+				JOptionPane.showMessageDialog(null, "Mês não adicionado !");
+				//limpar();
+			}
 		} catch (Exception e) {
 			System.out.println(e);
 		}
 	}
 
-	// METODO PARA SETAR OS CAMPOS DO jFRAME setSelectedItem
-	private void setarCampos() {
-		int setar = tblPrincipal.getSelectedRow();
-		txtV1.setText(tblPrincipal.getModel().getValueAt(setar, 0).toString().replace(".", ","));
-		txtV2.setText(tblPrincipal.getModel().getValueAt(setar, 1).toString().replace(".", ","));
-		cmb1.setSelectedItem(tblPrincipal.getModel().getValueAt(setar, 2).toString().replace(".", ","));
-		txtV3.setText(tblPrincipal.getModel().getValueAt(setar, 3).toString().replace(".", ","));
-		cmb2.setSelectedItem(tblPrincipal.getModel().getValueAt(setar, 4).toString().replace(".", ","));
-		txtV4.setText(tblPrincipal.getModel().getValueAt(setar, 5).toString().replace(".", ","));
-		cmb3.setSelectedItem(tblPrincipal.getModel().getValueAt(setar, 6).toString().replace(".", ","));
-		txtV5.setText(tblPrincipal.getModel().getValueAt(setar, 7).toString().replace(".", ","));
-		cmb4.setSelectedItem(tblPrincipal.getModel().getValueAt(setar, 8).toString().replace(".", ","));
-		txtV6.setText(tblPrincipal.getModel().getValueAt(setar, 9).toString().replace(".", ","));
-		cmb5.setSelectedItem(tblPrincipal.getModel().getValueAt(setar, 10).toString().replace(".", ","));
-		txtV7.setText(tblPrincipal.getModel().getValueAt(setar, 11).toString().replace(".", ","));
-		cmb6.setSelectedItem(tblPrincipal.getModel().getValueAt(setar, 12).toString().replace(".", ","));
-		txtV8.setText(tblPrincipal.getModel().getValueAt(setar, 13).toString().replace(".", ","));
-		cmb7.setSelectedItem(tblPrincipal.getModel().getValueAt(setar, 14).toString().replace(".", ","));
-		txtV9.setText(tblPrincipal.getModel().getValueAt(setar, 15).toString().replace(".", ","));
-		cmb8.setSelectedItem(tblPrincipal.getModel().getValueAt(setar, 16).toString().replace(".", ","));
-		txtV10.setText(tblPrincipal.getModel().getValueAt(setar, 17).toString().replace(".", ","));
-		cmb9.setSelectedItem(tblPrincipal.getModel().getValueAt(setar, 18).toString().replace(".", ","));
-
-		double valor1, valor2, valor3, valor4, valor5, valor6, valor7, valor8, valor9, resultado;
-		DecimalFormat formatador = new DecimalFormat("0.00");
-		valor1 = Double.parseDouble(txtV2.getText().replace(",", "."));
-		valor2 = Double.parseDouble(txtV3.getText().replace(",", "."));
-		valor3 = Double.parseDouble(txtV4.getText().replace(",", "."));
-		valor4 = Double.parseDouble(txtV5.getText().replace(",", "."));
-		valor5 = Double.parseDouble(txtV6.getText().replace(",", "."));
-		valor6 = Double.parseDouble(txtV7.getText().replace(",", "."));
-		valor7 = Double.parseDouble(txtV8.getText().replace(",", "."));
-		valor8 = Double.parseDouble(txtV9.getText().replace(",", "."));
-		valor9 = Double.parseDouble(txtV10.getText().replace(",", "."));
-		resultado = valor1 + valor2 + valor3 + valor4 + valor5 + valor6 + valor7 + valor8 + valor9;
-		txtDebitos.setText(formatador.format(resultado));
-	}
+	// metodo para limpar a tabela
+	//private void limparTabela() {
+		//while (tblPrincipal.getRowCount() > 0) {
+			//((DefaultTableModel) tblPrincipal.getModel()).removeRow(0);
+		//}
+	//}
 
 	// Metodo para alterar cliente
 	private void editar() {
@@ -605,7 +572,7 @@ public class Principal extends JDialog {
 							+ " foi atualizado com sucesso" + "\n O Valor de : " + txtV10.getText().replace(".", ",")
 							+ " R$ reais de " + lblCelular.getText() + " na situação de " + cmb9.getSelectedItem()
 							+ " foi atualizado com sucesso");
-					limpar();
+					//limpar();
 				} else {
 					JOptionPane.showMessageDialog(null, "Não foi possível atualizar o mês de :" + txtV1.getText()
 							+ "Não foi possível atualizar o valor de :" + txtV2.getText().replace(".", ",") + "R$ reais"
@@ -617,7 +584,7 @@ public class Principal extends JDialog {
 							+ "Não foi possível atualizar o valor de :" + txtV8.getText().replace(".", ",") + "R$ reais"
 							+ "Não foi possível atualizar o valor de :" + txtV9.getText().replace(".", ",")
 							+ "R$ reais");
-					limpar();
+					//limpar();
 				}
 			} catch (Exception e) {
 				System.out.println(e);
@@ -664,7 +631,7 @@ public class Principal extends JDialog {
 				System.out.println(adicionado);
 				if (adicionado == 1) {
 					JOptionPane.showMessageDialog(null, "contas deste mês adicionadas com sucesso");
-					limpar();
+					//limpar();
 				} else {
 					JOptionPane.showMessageDialog(null, "Não foi possivel adicionar as contas deste mês");
 				}
@@ -687,9 +654,9 @@ public class Principal extends JDialog {
 				pst = conexao.prepareStatement(delete);
 				pst.setString(1, txtV1.getText());
 				int removido = pst.executeUpdate();
-				limpar();
+				//limpar();
 				if (removido == 1) {
-					limpar();
+					//limpar();
 					JOptionPane.showMessageDialog(null, "Contas deste mês removidas");
 				} else {
 					JOptionPane.showMessageDialog(null,
@@ -698,7 +665,7 @@ public class Principal extends JDialog {
 
 			} catch (Exception e) {
 				System.out.println(e);
-				limpar();
+				//limpar();
 			}
 		}
 
@@ -729,7 +696,7 @@ public class Principal extends JDialog {
 					JOptionPane.INFORMATION_MESSAGE);
 		}
 
-		limpar();
+		//limpar();
 	}
 
 	private void alterarLabel() {// metodo pra mostrar data e hora no lugar do Frame link
@@ -762,6 +729,5 @@ public class Principal extends JDialog {
 		txtGanhos.setText(null);
 		txtDebitos.setText(null);
 		txtSobra.setText(null);
-		txtPesquisar.setText(null);
 	}
 }
